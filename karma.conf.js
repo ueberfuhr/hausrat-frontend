@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/todos-ui'),
+      dir: require('path').join(__dirname, './coverage/hausrat-frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },
