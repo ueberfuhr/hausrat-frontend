@@ -1,0 +1,37 @@
+<form (ngSubmit)="onSubmit()"
+      #editForm="ngForm"
+      class="border border-bottom mb-4 p-2 bg-light rounded was-validated">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="edit-product">Produkt</label>
+            <select
+                   id="edit-product"
+                   name="product"
+                   class="form-control"
+                   required
+                   [(ngModel)]="request.product"
+                   >
+                <option *ngFor="let product of productOptions">{{product}}</option>
+            </select>
+            <div class="invalid-feedback">Bitte wähle eine der Optionen</div>
+        </div>
+        <div class="form-group col">
+            <label for="edit-living-area">Wohnfläche</label>
+            <input type="number"
+                   id="edit-living-area"
+                   name="living-area"
+                   class="form-control"
+                   placeholder="Wohnfläche"
+                   min=20
+                   [(ngModel)]="request.livingArea">
+            <div class="invalid-feedback">Es müssen mindestens 20m² Wohnfläche vorhanden sein.</div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            <button #submitButton [disabled]="editForm.invalid" type="submit" class="btn btn-primary">Berechnen</button>
+        </div>
+    </div>
+
+</form>

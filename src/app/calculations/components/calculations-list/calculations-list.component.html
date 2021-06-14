@@ -1,0 +1,5 @@
+<h2 class="mb-4">Berechnungen</h2>
+<app-edit-calculation (requestEditDone)="onProcessRequest($event)"></app-edit-calculation>
+<div *ngFor="let result of results" class="mb-2">
+  <app-view-calculation [calculation]="result"></app-view-calculation>
+</div>
