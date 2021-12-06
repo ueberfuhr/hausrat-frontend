@@ -1,0 +1,16 @@
+<!-- https://getbootstrap.com/docs/4.0/utilities/colors/ -->
+<div class="toast-container">
+  <ngb-toast *ngFor="let toast of toasts"
+             [autohide]="true"
+             [delay]="3000"
+             [ngClass]="{
+               'text-light' : true,
+               'bg-success' : ToastType.SUCCESS === toast.type,
+               'bg-danger' : ToastType.DANGER === toast.type,
+               'bg-warning' : ToastType.WARNING === toast.type,
+               'bg-info' : ToastType.INFO === toast.type
+             }"
+             (hidden)="remove(toast)">
+    {{toast.message}}
+  </ngb-toast>
+</div>
