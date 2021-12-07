@@ -2,12 +2,13 @@
     <div class="card-header d-flex justify-content-between">
         <h5>{{calculation?.value | number: '1.2-2'}} {{calculation?.currency}}</h5>
         <div>
-      <span>
-        {{calculation?.request?.product}}, {{calculation?.request?.livingArea | number: '1.2-10'}} m²
-      </span>
+            {{calculation?.principal}}
+            <span>
+                {{calculation?.request?.product}}, {{calculation?.request?.livingArea | number: '1.2-10'}} m²
+            </span>
             <span *ngIf="calculation?.timestamp" class="badge badge-primary ml-2">
-        {{calculation?.timestamp | date:'dd.MM.yyyy hh:mm'}}
-      </span>
+                {{calculation?.timestamp | date:'dd.MM.yyyy hh:mm'}}
+            </span>
         </div>
     </div>
     <!--

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponseBase} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {ToastService} from '../services/toast.service';
 import {ToastType} from '../models/toast.model';
 
@@ -15,18 +15,14 @@ export class HttpErrorToToastInterceptor implements HttpInterceptor {
         return next
             .handle(request)
             .pipe(
-                map((event: HttpEvent<any>) => {
-                    const response = event as HttpResponseBase;
-                    console.log('<-Interceptor');
-                    console.log(response);
-                    return event;
-                })
-            )
-            .pipe(
                 catchError((response: HttpErrorResponse) => {
-                    console.log(response);
+                    console.log(`Error response: ${response}`);
                     this.toastService.show({
-                        message: `Beim Zugriff auf Daten von Backend wurde Fehlercode ${response.status} zurückgegeben.`,
+                        message: response.status > 0
+                            ?
+                            `Beim Zugriff auf den Server wurde der Fehlercode ${response.status} zurückgegeben. Details: ${response.message}`
+                            :
+                            'Beim Zugriff auf den Server gibt es einen unbekannten Fehler. Bitte prüfe die Details über die F12-Tools.',
                         type: ToastType.DANGER
                     });
                     return throwError(response);

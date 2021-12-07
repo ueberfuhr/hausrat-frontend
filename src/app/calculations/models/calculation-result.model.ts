@@ -7,7 +7,8 @@ export class CalculationResult {
         public request: CalculationRequest,
         public value: number,
         public currency: string,
-        public timestamp: Date) {
+        public timestamp: Date,
+        public principal?: string) {
     }
 
 }
