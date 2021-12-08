@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NavigationComponent} from './routing/components/navigation/navigation.component';
 import {CalculationsModule} from './calculations/calculations.module';
 import {SharedModule} from './shared/shared.module';
+import {OAuthModule} from 'angular-oauth2-oidc';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import {SharedModule} from './shared/shared.module';
         AppRoutingModule,
         NgbModule,
         SharedModule,
-        CalculationsModule
+        CalculationsModule,
+        OAuthModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
