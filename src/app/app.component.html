@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 <div class="container-fluid">
   <app-toast-container></app-toast-container>
-  <div>Access Token: {{hasValidAccessToken}}</div>
-  <router-outlet></router-outlet>
+  <img *ngIf="!isAuthenticated" src="assets/anonymous.png" style="max-width: 100%;" alt="anonymer Benutzer" />
+  <router-outlet *ngIf="isAuthenticated"></router-outlet>
 </div>

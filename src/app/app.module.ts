@@ -7,12 +7,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NavigationComponent} from './routing/components/navigation/navigation.component';
 import {CalculationsModule} from './calculations/calculations.module';
 import {SharedModule} from './shared/shared.module';
-import {OAuthModule} from 'angular-oauth2-oidc';
+import {SecurityModule} from './security/security.module';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavigationComponent
+        NavigationComponent,
     ],
     imports: [
         BrowserModule,
@@ -20,7 +20,7 @@ import {OAuthModule} from 'angular-oauth2-oidc';
         NgbModule,
         SharedModule,
         CalculationsModule,
-        OAuthModule.forRoot()
+        SecurityModule
     ],
     providers: [],
     bootstrap: [AppComponent]

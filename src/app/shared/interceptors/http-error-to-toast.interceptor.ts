@@ -4,19 +4,27 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {ToastService} from '../services/toast.service';
 import {ToastType} from '../models/toast.model';
+import {OAuthService} from 'angular-oauth2-oidc';
 
 @Injectable()
 export class HttpErrorToToastInterceptor implements HttpInterceptor {
 
-    constructor(private readonly toastService: ToastService) {
+    constructor(private readonly toastService: ToastService,
+                private readonly authService: OAuthService) {
     }
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.authService.getAccessToken()}`
+            }
+        });
         return next
             .handle(request)
             .pipe(
                 catchError((response: HttpErrorResponse) => {
-                    console.log(`Error response: ${response}`);
+                    console.log('Error response:');
+                    console.log(response);
                     this.toastService.show({
                         message: response.status > 0
                             ?

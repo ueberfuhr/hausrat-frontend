@@ -1,0 +1,30 @@
+<!-- Login -->
+<ng-template #loginDialog let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Anmeldung</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="invalidTrial">Login nicht erfolgreich</div>
+    <form (ngSubmit)="modal.close()" class="was-validated" #editForm="ngForm">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="username">Benutzername:</label>
+                <div class="input-group">
+                    <input ngbAutofocus id="username" class="form-control" name="username" [(ngModel)]="username" required>
+                </div>
+                <label for="password">Passwort:</label>
+                <div class="input-group">
+                    <input id="password" type="password" class="form-control" name="password" [(ngModel)]="password" required >
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" [disabled]="editForm.invalid">Anmelden</button>
+        </div>
+    </form>
+</ng-template>
+<button *ngIf="!isAuthenticated" class="btn btn-secondary" (click)="open(loginDialog)" accesskey="l">Anmelden</button>
+<span *ngIf="isAuthenticated" class="mr-4 badge badge-secondary">🙍‍♂️ {{username}}</span>
+<button *ngIf="isAuthenticated" class="btn btn-secondary" (click)="logout()" accesskey="l">Abmelden</button>
