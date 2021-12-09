@@ -12,7 +12,7 @@ export class AuthenticationService {
     constructor(private readonly authService: OAuthService) {
     }
 
-    isAuthenticated(): boolean {
+    get authenticated(): boolean {
         return this.authService.hasValidAccessToken();
     }
 
@@ -20,7 +20,7 @@ export class AuthenticationService {
         // Tweak config for implicit flow
         this.authService.configure(authConfig);
         sessionStorage.setItem('flow', 'implicit');
-        return this.authService.loadDiscoveryDocument().then((resp: OAuthSuccessEvent) => {
+        return this.authService.loadDiscoveryDocument().then(() => {
             return this.authService.fetchTokenUsingPasswordFlow(user, password);
         });
     }

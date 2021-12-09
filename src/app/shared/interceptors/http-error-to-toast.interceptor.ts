@@ -23,8 +23,6 @@ export class HttpErrorToToastInterceptor implements HttpInterceptor {
             .handle(request)
             .pipe(
                 catchError((response: HttpErrorResponse) => {
-                    console.log('Error response:');
-                    console.log(response);
                     this.toastService.show({
                         message: response.status > 0
                             ?

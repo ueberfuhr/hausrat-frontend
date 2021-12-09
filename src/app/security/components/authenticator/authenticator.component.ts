@@ -24,34 +24,37 @@ export class AuthenticatorComponent implements OnInit {
         this.username = sessionStorage.getItem('authenticator.username') ?? '';
     }
 
-    get isAuthenticated(): boolean {
-        return this.authService.isAuthenticated();
+    get authenticated(): boolean {
+        return this.authService.authenticated;
     }
 
     open(content: any): void {
         this.toastService.enabled = false;
-        try {
-            this.usernameBackup = this.username;
-            this.invalidTrial = false;
-            this.reopen(content);
-        } finally {
-            this.toastService.enabled = true;
-        }
+        this.usernameBackup = this.username;
+        this.invalidTrial = false;
+        this.reopen(content);
     }
 
     private reopen(content: any): void {
-        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(result => {
-            this.authService.login(this.username, this.password).then(() => {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+            .result
+            .then(() => {
+                this.authService.login(this.username, this.password)
+                    .then(() => {
+                        this.password = '';
+                        this.toastService.enabled = true;
+                        sessionStorage.setItem('authenticator.username', this.username);
+                    })
+                    .catch(() => {
+                        this.invalidTrial = true;
+                        this.reopen(content);
+                    });
+            })
+            .catch(() => { // Benutzer hat Dialog abgebrochen
+                this.username = this.usernameBackup;
                 this.password = '';
-                sessionStorage.setItem('authenticator.username', this.username);
-            }, onError => {
-                this.invalidTrial = true;
-                this.reopen(content);
+                this.toastService.enabled = true;
             });
-        }, onRejected => {
-            this.username = this.usernameBackup;
-            this.password = '';
-        });
     }
 
     logout(): void {

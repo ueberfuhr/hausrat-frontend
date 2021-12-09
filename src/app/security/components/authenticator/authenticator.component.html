@@ -25,6 +25,6 @@
         </div>
     </form>
 </ng-template>
-<button *ngIf="!isAuthenticated" class="btn btn-secondary" (click)="open(loginDialog)" accesskey="l">Anmelden</button>
-<span *ngIf="isAuthenticated" class="mr-4 badge badge-secondary">🙍‍♂️ {{username}}</span>
-<button *ngIf="isAuthenticated" class="btn btn-secondary" (click)="logout()" accesskey="l">Abmelden</button>
+<button *ngIf="!authenticated" class="btn btn-secondary" (click)="open(loginDialog)" accesskey="l">Anmelden</button>
+<span *ngIf="authenticated" class="mr-4 badge badge-secondary">🙍‍♂️ {{username}}</span>
+<button *ngIf="authenticated" class="btn btn-secondary" (click)="logout()" accesskey="l">Abmelden</button>
