@@ -18,6 +18,7 @@ speed-measure-plugin*.json
 .*
 !.gitignore
 !.gitkeep
+!.github
 
 # IDE - VSCode
 !.vscode/settings.json
