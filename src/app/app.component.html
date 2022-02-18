@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 <div class="container-fluid">
   <app-toast-container></app-toast-container>
-  <img *ngIf="!authenticated" src="assets/anonymous.png" style="max-width: 100%;" alt="anonymer Benutzer" />
-  <router-outlet *ngIf="authenticated"></router-outlet>
+  <img *ngIf="!authenticated && secured" src="assets/anonymous.png" style="max-width: 100%;" alt="anonymer Benutzer" />
+  <router-outlet *ngIf="authenticated || !secured"></router-outlet>
 </div>

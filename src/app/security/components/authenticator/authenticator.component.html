@@ -12,11 +12,13 @@
             <div class="form-group">
                 <label for="username">Benutzername:</label>
                 <div class="input-group">
-                    <input ngbAutofocus id="username" class="form-control" name="username" [(ngModel)]="username" required>
+                    <input ngbAutofocus id="username" class="form-control" name="username" [(ngModel)]="username"
+                           required>
                 </div>
                 <label for="password">Passwort:</label>
                 <div class="input-group">
-                    <input id="password" type="password" class="form-control" name="password" [(ngModel)]="password" required >
+                    <input id="password" type="password" class="form-control" name="password" [(ngModel)]="password"
+                           required>
                 </div>
             </div>
         </div>
@@ -25,6 +27,8 @@
         </div>
     </form>
 </ng-template>
-<button *ngIf="!authenticated" class="btn btn-secondary" (click)="open(loginDialog)" accesskey="l">Anmelden</button>
-<span *ngIf="authenticated" class="mr-4 badge badge-secondary">🙍‍♂️ {{username}}</span>
-<button *ngIf="authenticated" class="btn btn-secondary" (click)="logout()" accesskey="l">Abmelden</button>
+<ng-container *ngIf="secured">
+    <button *ngIf="!authenticated" class="btn btn-secondary" (click)="open(loginDialog)" accesskey="l">Anmelden</button>
+    <span *ngIf="authenticated" class="mr-4 badge badge-secondary">🙍‍♂️ {{username}}</span>
+    <button *ngIf="authenticated" class="btn btn-secondary" (click)="logout()" accesskey="l">Abmelden</button>
+</ng-container>

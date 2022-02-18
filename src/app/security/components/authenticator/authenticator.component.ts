@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ToastService} from '../../../shared/services/toast.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
     selector: 'app-authenticator',
@@ -26,6 +27,10 @@ export class AuthenticatorComponent implements OnInit {
 
     get authenticated(): boolean {
         return this.authService.authenticated;
+    }
+
+    get secured(): boolean {
+        return environment.secured;
     }
 
     open(content: any): void {

@@ -41,6 +41,14 @@
             "namedChunks": true
           },
           "configurations": {
+            "secured": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.secured.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -79,6 +87,9 @@
           "configurations": {
             "production": {
               "browserTarget": "hausrat-frontend:build:production"
+            },
+            "secured": {
+              "browserTarget": "hausrat-frontend:build:secured"
             }
           }
         },

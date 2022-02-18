@@ -4,6 +4,7 @@
 
 Du kannst das Projekt in Deine Entwicklungsumgebung importieren (VS Code oder WebStorm). Starten kannst Du die Anwendung
 über die Git Bash per `ng serve -o` (`-o` öffnet den Browser automatisch).
+Ist das Backend mit Security gestartet, so starte auch das Frontend mit `ng serve --configuration=secured`.
 
 Möchtest Du test-driven vorgehen, starte in einer zweiten Git Bash noch `ng test`. Du erhältst dabei die Testergebnisse
 im Browser.

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {authConfig} from '../../../environments/environment.prod';
-import {OAuthSuccessEvent} from 'angular-oauth2-oidc/events';
 import {TokenResponse} from 'angular-oauth2-oidc/types';
 
 @Injectable({
@@ -20,9 +19,8 @@ export class AuthenticationService {
         // Tweak config for implicit flow
         this.authService.configure(authConfig);
         sessionStorage.setItem('flow', 'implicit');
-        return this.authService.loadDiscoveryDocument().then(() => {
-            return this.authService.fetchTokenUsingPasswordFlow(user, password);
-        });
+        await this.authService.loadDiscoveryDocument();
+        return this.authService.fetchTokenUsingPasswordFlow(user, password);
     }
 
     logout(): void {
