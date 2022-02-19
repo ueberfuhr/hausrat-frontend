@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ToastService} from '../../../shared/services/toast.service';
 import {environment} from '../../../../environments/environment';
 
 @Component({
@@ -17,8 +16,7 @@ export class AuthenticatorComponent implements OnInit {
     invalidTrial = false;
 
     constructor(private readonly authService: AuthenticationService,
-                private readonly modalService: NgbModal,
-                private readonly toastService: ToastService) {
+                private readonly modalService: NgbModal) {
     }
 
     ngOnInit(): void {
@@ -34,7 +32,6 @@ export class AuthenticatorComponent implements OnInit {
     }
 
     open(content: any): void {
-        this.toastService.enabled = false;
         this.usernameBackup = this.username;
         this.invalidTrial = false;
         this.reopen(content);
@@ -47,7 +44,6 @@ export class AuthenticatorComponent implements OnInit {
                 this.authService.login(this.username, this.password)
                     .then(() => {
                         this.password = '';
-                        this.toastService.enabled = true;
                         sessionStorage.setItem('authenticator.username', this.username);
                     })
                     .catch(() => {
@@ -58,7 +54,6 @@ export class AuthenticatorComponent implements OnInit {
             .catch(() => { // Benutzer hat Dialog abgebrochen
                 this.username = this.usernameBackup;
                 this.password = '';
-                this.toastService.enabled = true;
             });
     }
 

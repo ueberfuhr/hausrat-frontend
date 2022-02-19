@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 import {CalculationResult} from '../models/calculation-result.model';
 import {CalculationRequest} from '../models/calculation-request.model';
 import {CalculationsMappingService} from './calculations-mapping.service';
+import {CalculationResultDto} from './calculation-result-dto';
 
 @Injectable({
     providedIn: 'root'
@@ -17,9 +18,9 @@ export class CalculationsService {
     }
 
     getAll(): Promise<CalculationResult[]> {
-        return this.http.get<CalculationResult[]>(this.path())
+        return this.http.get<CalculationResultDto[]>(this.path())
             .toPromise()
-            .then(results => results.map(result => this.mappingService.fromApi(result)));
+            .then(results => results.map(result => this.mappingService.resultFromApi(result)));
     }
 
     private path(result?: CalculationResult): string {
@@ -27,14 +28,14 @@ export class CalculationsService {
     }
 
     process(request: CalculationRequest): Promise<CalculationResult> {
-        return this.http.post<CalculationResult>(this.path(), this.mappingService.toApi(request), {observe: 'response'})
+        return this.http.post<CalculationResultDto>(this.path(), this.mappingService.requestToApi(request))
             .toPromise()
-            .then(response => this.mappingService.fromApi(response.body));
+            .then(result => this.mappingService.resultFromApi(result));
     }
 
     public getByURL(location: string): Promise<CalculationResult> {
-        return this.http.get<CalculationResult>(location)
+        return this.http.get<CalculationResultDto>(location)
             .toPromise()
-            .then(result => this.mappingService.fromApi(result));
+            .then(result => this.mappingService.resultFromApi(result));
     }
 }

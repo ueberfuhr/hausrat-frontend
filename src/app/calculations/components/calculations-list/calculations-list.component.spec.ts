@@ -1,11 +1,11 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {of} from 'rxjs';
-import {EditCalculationComponent} from '../edit-calculation/edit-todo.component';
 import {FormsModule} from '@angular/forms';
 import {CalculationsListComponent} from './calculations-list.component';
 import {CalculationsService} from '../../services/calculations.service';
 import {ViewCalculationComponent} from '../view-calculation/view-calculation.component';
+import {EditCalculationComponent} from '../edit-calculation/edit-calculation.component';
 
 describe('TodosListComponent', () => {
     let component: CalculationsListComponent;

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CalculationsService} from '../../services/calculations.service';
 import {CalculationResult} from '../../models/calculation-result.model';
 import {CalculationRequest} from '../../models/calculation-request.model';
-import {ToastService} from '../../../shared/services/toast.service';
-import {ToastType} from '../../../shared/models/toast.model';
+import {ToastService} from '../../../toast/services/toast.service';
+import {ToastType} from '../../../toast/models/toast-type';
 
 @Component({
     selector: 'app-calculations-list',
@@ -26,10 +26,12 @@ export class CalculationsListComponent implements OnInit {
         this.todosService.getAll()
             .then(result => {
                 this.results = result;
-                this.toastService.show({
-                    message: 'Daten erfolgreich aktualisiert',
-                    type: ToastType.INFO
-                });
+                if (toast) {
+                    this.toastService.show({
+                        message: 'Daten erfolgreich aktualisiert',
+                        type: ToastType.INFO
+                    });
+                }
             });
     }
 

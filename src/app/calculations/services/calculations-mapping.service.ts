@@ -1,34 +1,37 @@
-/* tslint:disable:no-string-literal */
 import {Injectable} from '@angular/core';
 import {CalculationResult} from '../models/calculation-result.model';
 import {CalculationRequest} from '../models/calculation-request.model';
+import {CalculationRequestDto} from './calculation-request-dto';
+import {CalculationResultDto} from './calculation-result-dto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CalculationsMappingService {
 
-  constructor() {
-  }
-
-  fromApi(api: any): CalculationResult {
-    // we have to rename living_area to livingArea
-    const result = Object.assign({}, api);
-    if (result.request && result.request['living_area']) {
-      result.request.livingArea = result.request['living_area'];
-      delete result.request['living_area'];
+    resultFromApi(result: CalculationResultDto): CalculationResult {
+        return {
+            id: result.id,
+            request: this.requestFromApi(result.request),
+            principal: result.principal,
+            value: result.value,
+            currency: result.currency,
+            timestamp: result.timestamp
+        };
     }
-    return result;
-  }
 
-  toApi(req: CalculationRequest): any {
-    // we have to rename livingArea to living_area
-    const result = Object.assign({}, req) as any;
-    if (result.livingArea) {
-      result['living_area'] = result.livingArea;
+    requestFromApi(req: CalculationRequestDto): CalculationRequest {
+        return {
+            livingArea: req.living_area,
+            product: req.product
+        };
     }
-    delete result.livingArea;
-    return result;
-  }
+
+    requestToApi(req: CalculationRequest): CalculationRequestDto {
+        return {
+            living_area: req.livingArea,
+            product: req.product
+        };
+    }
 
 }

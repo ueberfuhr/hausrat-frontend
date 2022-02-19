@@ -5,7 +5,8 @@ import {AppRoutingModule} from './routing/app-routing.module';
 import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CalculationsModule} from './calculations/calculations.module';
-import {SharedModule} from './shared/shared.module';
+import {ToastModule} from './toast/toast.module';
+import {SecurityModule} from './security/security.module';
 
 @NgModule({
     declarations: [
@@ -15,8 +16,9 @@ import {SharedModule} from './shared/shared.module';
         BrowserModule,
         AppRoutingModule,
         NgbModule,
-        SharedModule,
         CalculationsModule,
+        ToastModule,
+        SecurityModule
     ],
     providers: [],
     bootstrap: [AppComponent]
