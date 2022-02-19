@@ -1,14 +1,33 @@
 import {CalculationRequest} from './calculation-request.model';
 
-export class CalculationResult {
+/**
+ * The result of a calculation.
+ */
+export interface CalculationResult {
 
-    constructor(
-        public id: number,
-        public request: CalculationRequest,
-        public value: number,
-        public currency: string,
-        public timestamp: Date,
-        public principal?: string) {
-    }
+    /**
+     * The id of the result.
+     */
+    id: number;
+    /**
+     * The request that was originally sent to do the calculation.
+     */
+    request: CalculationRequest;
+    /**
+     * The result value.
+     */
+    value: number;
+    /**
+     * The result currency.
+     */
+    currency: string;
+    /**
+     * The timestamp of the calculation.
+     */
+    timestamp: Date;
+    /**
+     * The principal that sent the calculation request.
+     */
+    principal?: string;
 
 }

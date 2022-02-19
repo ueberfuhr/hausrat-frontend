@@ -1,6 +1,15 @@
-export class CalculationRequest {
+/**
+ * The calculation request.
+ */
+export interface CalculationRequest {
 
-    constructor(public product: string, public livingArea: number) {
-    }
+    /**
+     * The name of the product.
+     */
+    product: string;
+    /**
+     * The size of living area.
+     */
+    livingArea: number;
 
 }
