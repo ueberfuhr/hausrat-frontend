@@ -25,6 +25,7 @@ jobs:
     - name: Test
       run: |
         npm install
+        sudo apt-get install chromium-browser
         npm test -- --no-watch
 
     - name: Build
