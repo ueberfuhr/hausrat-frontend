@@ -7,7 +7,7 @@ import {CalculationsService} from '../../services/calculations.service';
 import {ViewCalculationComponent} from '../view-calculation/view-calculation.component';
 import {EditCalculationComponent} from '../edit-calculation/edit-calculation.component';
 
-describe('TodosListComponent', () => {
+describe('CalculationsListComponent', () => {
     let component: CalculationsListComponent;
     let fixture: ComponentFixture<CalculationsListComponent>;
     let service: jasmine.SpyObj<CalculationsService>;
@@ -20,13 +20,10 @@ describe('TodosListComponent', () => {
             providers: [
                 {provide: CalculationsService, useValue: serviceSpy}
             ]
-        })
-            .compileComponents();
-    });
-
-    beforeEach(() => {
+        }).compileComponents();
         service = TestBed.inject(CalculationsService) as jasmine.SpyObj<CalculationsService>;
-        service.getAll = jasmine.createSpy().and.returnValue(of().toPromise());
+        service.loadAll = jasmine.createSpy().and.returnValue(of());
+        (service as any).calculationsChanged = of(); // hack :(
         fixture = TestBed.createComponent(CalculationsListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -34,6 +31,6 @@ describe('TodosListComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-        expect(service.getAll).toHaveBeenCalledTimes(1);
+        expect(service.loadAll).toHaveBeenCalledTimes(1);
     });
 });

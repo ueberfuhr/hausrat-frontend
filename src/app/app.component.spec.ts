@@ -3,6 +3,8 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {NavigationComponent} from './routing/components/navigation/navigation.component';
 import {SecurityModule} from './security/security.module';
+import {API_ENDPOINT, AUTH_CONFIG} from '../environments/app-config.model';
+import {environment} from '../environments/environment';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
@@ -15,6 +17,10 @@ describe('AppComponent', () => {
                 AppComponent,
                 NavigationComponent
             ],
+            providers: [
+                {provide: AUTH_CONFIG, useValue: environment.authConfig},
+                {provide: API_ENDPOINT, useValue: environment.apiEndpoint},
+            ]
         }).compileComponents();
     });
 
