@@ -1,38 +1,32 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+import {AppConfig} from './app-config.model';
 
-import {AuthConfig} from 'angular-oauth2-oidc';
+export const environment: AppConfig = {
+    production: false,
+    apiEndpoint: 'http://localhost:8080/api/v1',
+    authConfig: {
+        // Url of the Identity Provider
+        issuer: 'http://localhost:8180/auth/realms/Hausrat%20Service%20Realm',
 
-export const environment = {
-  production: false,
-  secured: true,
-  SERVICE_URL: 'http://localhost:8080/api/v1'
-};
+        // URL of the SPA to redirect the user to after login
+        redirectUri: window.location.origin,
 
-export const authConfig: AuthConfig = {
-  // Url of the Identity Provider
-  issuer: 'http://localhost:8180/auth/realms/Hausrat%20Service%20Realm',
+        // The SPA's id. The SPA is registerd with this id at the auth-server
+        // clientId: 'server.code',
+        clientId: 'hausrat-service-clients',
 
-  // URL of the SPA to redirect the user to after login
-  redirectUri: window.location.origin,
+        // Just needed if your auth server demands a secret. In general, this
+        // is a sign that the auth server is not configured with SPAs in mind
+        // and it might not enforce further best practices vital for security
+        // such applications.
+        // dummyClientSecret: '66ce1cc4-5426-4743-bcd7-06c2b0cdd581',
 
-  // The SPA's id. The SPA is registerd with this id at the auth-server
-  // clientId: 'server.code',
-  clientId: 'hausrat-service-clients',
+        responseType: 'code',
 
-  // Just needed if your auth server demands a secret. In general, this
-  // is a sign that the auth server is not configured with SPAs in mind
-  // and it might not enforce further best practices vital for security
-  // such applications.
-  // dummyClientSecret: '66ce1cc4-5426-4743-bcd7-06c2b0cdd581',
+        // set the scope for the permissions the client should request
+        // The first four are defined by OIDC.
+        // Important: Request offline_access to get a refresh token
+        scope: 'openid profile email offline_access',
 
-  responseType: 'code',
-
-  // set the scope for the permissions the client should request
-  // The first four are defined by OIDC.
-  // Important: Request offline_access to get a refresh token
-  scope: 'openid profile email offline_access',
-
-  showDebugInformation: true,
+        showDebugInformation: true,
+    }
 };

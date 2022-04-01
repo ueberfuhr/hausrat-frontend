@@ -1,5 +1,6 @@
-export const environment = {
-  production: false,
-  secured: false,
-  SERVICE_URL: 'http://localhost:8080/api/v1'
+import {AppConfig} from './app-config.model';
+
+export const environment: AppConfig = {
+    production: false,
+    apiEndpoint: 'http://localhost:8080/api/v1'
 };

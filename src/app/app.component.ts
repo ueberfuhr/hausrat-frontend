@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from './security/services/authentication.service';
-import {environment} from '../environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -9,9 +8,7 @@ import {environment} from '../environments/environment';
 })
 export class AppComponent {
 
-    constructor(
-        private readonly authService: AuthenticationService
-    ) {
+    constructor(private readonly authService: AuthenticationService) {
     }
 
     get authenticated(): boolean {
@@ -19,9 +16,8 @@ export class AppComponent {
     }
 
     get secured(): boolean {
-        return environment.secured;
+        return this.authService.secured;
     }
-
 
 
 }
