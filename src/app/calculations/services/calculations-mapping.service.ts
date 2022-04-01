@@ -9,6 +9,9 @@ import {CalculationResultDto} from './calculation-result-dto';
 })
 export class CalculationsMappingService {
 
+    // we could use CamelCaseInterceptor?
+    // https://github.com/GetTerminus/ngx-tools/issues/129
+
     resultFromApi(result: CalculationResultDto): CalculationResult {
         return {
             id: result.id,
