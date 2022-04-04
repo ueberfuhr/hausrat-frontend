@@ -9,5 +9,8 @@ describe('TodoMappingService', () => {
     service = TestBed.inject(CalculationsMappingService);
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
 });

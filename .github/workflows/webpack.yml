@@ -24,11 +24,11 @@ jobs:
 
     - name: Test
       run: |
-        npm install
+        npm ci
         sudo apt-get install chromium-browser
         npm test -- --no-watch
 
     - name: Build
       run: |
-        npm install
+        npm ci
         npm run build -- --configuration=production

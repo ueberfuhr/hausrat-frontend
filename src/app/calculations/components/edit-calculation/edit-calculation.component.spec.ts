@@ -3,7 +3,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {EditCalculationComponent} from './edit-calculation.component';
 
-describe('EditTodoComponent', () => {
+describe('EditCalculationComponent', () => {
   let component: EditCalculationComponent;
   let fixture: ComponentFixture<EditCalculationComponent>;
 
@@ -24,8 +24,9 @@ describe('EditTodoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show coorect submit button title', () => {
-    expect(fixture.nativeElement.querySelector('button[type="submit"]').innerText).toEqual('Berechnen');
+  it('should show correct submit button title', () => {
+    const submitButton = fixture.nativeElement.querySelector('button[type="submit"]');
+    expect(submitButton.textContent).toEqual('Berechnen');
   });
 
 });
