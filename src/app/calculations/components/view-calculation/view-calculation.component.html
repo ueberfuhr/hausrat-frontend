@@ -1,17 +1,14 @@
-<div class="card">
+<div *ngIf="calculation" class="card">
     <div class="card-header d-flex justify-content-between">
-        <h5>{{calculation?.value | number: '1.2-2'}} {{calculation?.currency}}</h5>
-        <div>
-            {{calculation?.principal}}
-            <span>
-                {{calculation?.request?.product}}, {{calculation?.request?.livingArea | number: '1.0-0'}} m²
-            </span>
-            <span *ngIf="calculation?.timestamp" class="badge badge-primary ml-2">
-                {{calculation?.timestamp | date:'dd.MM.yyyy hh:mm'}}
+        <h5>{{calculation.request.product}}, {{calculation.request.livingArea | number: '1.0-0'}} m²</h5>
+        <div *ngIf="calculation.timestamp">
+            <span class="badge bg-secondary ml-2">
+                {{calculation.timestamp | date:'dd.MM.yyyy hh:mm'}}
             </span>
         </div>
     </div>
-    <!--
-    <div class="card-body"></div>
-    -->
+    <div class="card-body">
+        Versicherungssumme: {{calculation.value | number: '1.2-2'}} {{calculation.currency}}
+        <span *ngIf="calculation.principal">(Anfrage von {{calculation.principal}})</span>
+    </div>
 </div>
