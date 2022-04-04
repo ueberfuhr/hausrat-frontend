@@ -3,6 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {environment} from '../../../environments/environment';
 import {CalculationsService} from './calculations.service';
 import {API_ENDPOINT} from '../../../environments/app-config.model';
+import {firstValueFrom} from 'rxjs';
 
 describe('CalculationsService', () => {
     let service: CalculationsService;
@@ -25,9 +26,8 @@ describe('CalculationsService', () => {
     });
 
     it('should return empty todos array', (done) => {
-        service.loadAll()
-            .toPromise() // TODO replace
-            .then(response => expect(response).toHaveSize(0))
+        firstValueFrom(service.loadAll())
+            .then(response => expect(response).toHaveLength(0))
             .then(done);
         httpMock
             .expectOne({method: 'GET', url: `${environment.apiEndpoint}/calculations`})
@@ -35,11 +35,10 @@ describe('CalculationsService', () => {
     });
     it('should return todos in array', (done) => {
 
-        service.loadAll()
-            .toPromise() // TODO replace
+        firstValueFrom(service.loadAll())
             .then(response => {
-                expect(response).toHaveSize(1);
-                expect(response[0].id).toEqual(5);
+                expect(response).toHaveLength(1);
+                expect(response[0]?.id).toEqual(5);
             })
             .then(done);
         httpMock

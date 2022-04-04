@@ -1,16 +1,14 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ViewCalculationComponent} from './view-calculation.component';
 
-describe('ViewTodoComponent', () => {
+describe('ViewCalculationComponent', () => {
   let component: ViewCalculationComponent;
   let fixture: ComponentFixture<ViewCalculationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ViewCalculationComponent ],
-      imports: [ FontAwesomeModule ]
+      // imports: [ FontAwesomeModule ]
     })
     .compileComponents();
   });

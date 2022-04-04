@@ -5,13 +5,15 @@ import {NavigationComponent} from './routing/components/navigation/navigation.co
 import {SecurityModule} from './security/security.module';
 import {API_ENDPOINT, AUTH_CONFIG} from '../environments/app-config.model';
 import {environment} from '../environments/environment';
+import {ToastModule} from './toast/toast.module';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
-                SecurityModule
+                SecurityModule,
+                ToastModule
             ],
             declarations: [
                 AppComponent,
