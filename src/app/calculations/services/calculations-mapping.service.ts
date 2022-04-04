@@ -13,28 +13,35 @@ export class CalculationsMappingService {
     // https://github.com/GetTerminus/ngx-tools/issues/129
 
     resultFromApi(result: CalculationResultDto): CalculationResult {
-        return {
-            id: result.id,
-            request: this.requestFromApi(result.request),
-            principal: result.principal,
-            value: result.value,
-            currency: result.currency,
-            timestamp: result.timestamp
-        };
+        return result;
+        /*
+                return {
+                    id: result.id,
+                    request: this.requestFromApi(result.request),
+                    principal: result.principal,
+                    value: result.value,
+                    currency: result.currency,
+                    timestamp: result.timestamp
+                };
+        */
     }
 
-    requestFromApi(req: CalculationRequestDto): CalculationRequest {
-        return {
-            livingArea: req.living_area,
-            product: req.product
-        };
-    }
-
+    /*
+        requestFromApi(req: CalculationRequestDto): CalculationRequest {
+            return {
+                livingArea: req.livingArea,
+                product: req.product
+            };
+        }
+    */
     requestToApi(req: CalculationRequest): CalculationRequestDto {
+        return req;
+        /*
         return {
-            living_area: req.livingArea,
+            livingArea: req.livingArea,
             product: req.product
         };
+        */
     }
 
 }

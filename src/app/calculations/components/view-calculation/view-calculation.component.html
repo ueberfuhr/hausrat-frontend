@@ -4,7 +4,7 @@
         <div>
             {{calculation?.principal}}
             <span>
-                {{calculation?.request?.product}}, {{calculation?.request?.livingArea | number: '1.2-10'}} m²
+                {{calculation?.request?.product}}, {{calculation?.request?.livingArea | number: '1.0-0'}} m²
             </span>
             <span *ngIf="calculation?.timestamp" class="badge badge-primary ml-2">
                 {{calculation?.timestamp | date:'dd.MM.yyyy hh:mm'}}

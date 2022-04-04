@@ -1,6 +1,6 @@
 export interface CalculationRequestDto {
 
     product: string;
-    living_area: number;
+    livingArea: number; // https://npm.io/package/ngx-snake-to-camel
 
 }

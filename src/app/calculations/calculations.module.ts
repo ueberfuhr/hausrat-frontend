@@ -7,6 +7,7 @@ import {LocalDateValueAccessorModule} from 'angular-date-value-accessor';
 import {CalculationsListComponent} from './components/calculations-list/calculations-list.component';
 import {ViewCalculationComponent} from './components/view-calculation/view-calculation.component';
 import {EditCalculationComponent} from './components/edit-calculation/edit-calculation.component';
+import {NgxSnakeToCamelModule} from 'ngx-snake-to-camel';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {EditCalculationComponent} from './components/edit-calculation/edit-calcu
         CommonModule,
         FontAwesomeModule,
         HttpClientModule,
+        NgxSnakeToCamelModule.forRoot(),
         FormsModule,
         LocalDateValueAccessorModule
     ]
