@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {LocalDateValueAccessorModule} from 'angular-date-value-accessor';
@@ -17,7 +16,6 @@ import {NgxSnakeToCamelModule} from 'ngx-snake-to-camel';
   ],
     imports: [
         CommonModule,
-        FontAwesomeModule,
         HttpClientModule,
         NgxSnakeToCamelModule.forRoot(),
         FormsModule,
