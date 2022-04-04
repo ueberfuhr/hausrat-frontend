@@ -23,4 +23,4 @@ Folgende Ideen habe ich noch für die Umsetzung:
  - Umstieg von NG Bootstrap auf Angular Material
    - Response Layout
    - Nachladen von Modulen bei Bedarf
- - Infinite Scroll für Listenansicht
+ - Infinite Scroll für Listenansicht (https://www.npmjs.com/package/ngx-infinite-scroll)
