@@ -21,6 +21,9 @@
       "dom"
     ]
   },
+  "include": [
+    "./setup-jest.ts"
+  ],
   "exclude": [
     "./node_modules",
     "./dist"

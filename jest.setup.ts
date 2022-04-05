@@ -1,4 +1,6 @@
 /* global mocks for jsdom */
+import '@testing-library/jest-dom';
+
 const mock = () => {
   let storage: { [key: string]: string } = {};
   return {

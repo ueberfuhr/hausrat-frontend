@@ -1,35 +1,33 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ViewCalculationComponent} from './view-calculation.component';
+import {CalculationResult} from '../../models/calculation-result.model';
+import {render, screen} from '@testing-library/angular';
 
 describe('ViewCalculationComponent', () => {
-  let component: ViewCalculationComponent;
-  let fixture: ComponentFixture<ViewCalculationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ViewCalculationComponent ],
-      // imports: [ FontAwesomeModule ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ViewCalculationComponent);
-    component = fixture.componentInstance;
-    component.calculation = {
-      id: 3,
-      request: {
-        product: 'COMPACT',
-        livingArea: 100
-      },
-      value: 100000,
-      currency: 'EUR',
-      timestamp: new Date()
+    const calculation: CalculationResult = {
+        id: 1,
+        currency: 'EUR',
+        timestamp: new Date(2022, 3, 1),
+        value: 10000,
+        request: {
+            product: 'OPTIMAL',
+            livingArea: 100
+        }
     };
-    fixture.detectChanges();
-  });
+    const cardTitle = () => screen.getByRole('heading', {level: 5});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(async () => {
+        await render(ViewCalculationComponent, {
+            componentProperties: {calculation}
+        });
+    });
+
+    it('should have product in title', () => {
+        expect(cardTitle()).toHaveTextContent(calculation.request.product);
+    });
+
+    it('should have living area in title', () => {
+        expect(cardTitle()).toHaveTextContent(calculation.request.livingArea.toFixed(0));
+    });
+
 });
