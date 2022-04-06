@@ -32,7 +32,18 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              {
+                "bundleName": "environment",
+                "inject": true,
+                "input": "src/environments/environment.ts"
+              },
+              {
+                "bundleName": "environment-prod",
+                "inject": false,
+                "input": "src/environments/environment.*.ts"
+              }
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
