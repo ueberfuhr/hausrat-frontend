@@ -27,23 +27,17 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "app-config.json",
+                "input": "src/environments",
+                "output": "."
+              }
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              {
-                "bundleName": "environment",
-                "inject": true,
-                "input": "src/environments/environment.ts"
-              },
-              {
-                "bundleName": "environment-prod",
-                "inject": false,
-                "input": "src/environments/environment.*.ts"
-              }
-            ],
+            "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -55,16 +49,16 @@
             "secured": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.secured.ts"
+                  "replace": "src/environments/app-config.json",
+                  "with": "src/environments/app-config.secured.json"
                 }
               ]
             },
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/environments/app-config.json",
+                  "with": "src/environments/app-config.prod.json"
                 }
               ],
               "optimization": true,

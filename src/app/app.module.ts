@@ -7,8 +7,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CalculationsModule} from './calculations/calculations.module';
 import {ToastModule} from './toast/toast.module';
 import {SecurityModule} from './security/security.module';
-import {API_ENDPOINT, APP_CONFIG, AUTH_CONFIG} from '../environments/app-config.model';
-import {environment} from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -21,11 +19,6 @@ import {environment} from '../environments/environment';
         CalculationsModule,
         ToastModule,
         SecurityModule
-    ],
-    providers: [
-        {provide: APP_CONFIG, useValue: environment},
-        {provide: AUTH_CONFIG, useValue: environment.authConfig},
-        {provide: API_ENDPOINT, useValue: environment.apiEndpoint},
     ],
     bootstrap: [AppComponent]
 })

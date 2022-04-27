@@ -1,0 +1,12 @@
+{
+  "production": true,
+  "apiEndpoint": "https://<url-to-production>/api/v1",
+  "authConfig": {
+    "issuer": "http://localhost:8180/auth/realms/Hausrat%20Service%20Realm",
+    "redirectUri": "window.location.origin",
+    "clientId": "hausrat-service-clients",
+    "responseType": "code",
+    "scope": "openid profile email offline_access",
+    "showDebugInformation": true
+  }
+}

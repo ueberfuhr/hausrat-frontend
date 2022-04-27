@@ -1,12 +1,31 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import {AppModule} from './app/app.module';
+import {API_ENDPOINT, APP_CONFIG, AppConfig, AUTH_CONFIG} from './environments/app-config.model';
 
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+fetch('app-config.json', {cache: 'reload'}) // TODO if error, open from cache or use default values
+    .then(response => response.json() as unknown as AppConfig)
+    .then(config => {
+        if (config.production) {
+            enableProdMode();
+        }
+        return config;
+    })
+    .catch(error => {
+        console.error(error);
+        const result: AppConfig = {
+            production: true,
+            apiEndpoint: './api/v1'
+        };
+        return result;
+    })
+    .then(config => {
+        return platformBrowserDynamic([
+            {provide: APP_CONFIG, useValue: config},
+            {provide: AUTH_CONFIG, useValue: config.authConfig},
+            {provide: API_ENDPOINT, useValue: config.apiEndpoint}
+        ]).bootstrapModule(AppModule);
+    })
+    .catch(err => console.error(err))
+;
