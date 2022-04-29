@@ -20,6 +20,15 @@ export interface AppConfig {
     apiEndpoint: string;
 }
 
+export function normalize(config: AppConfig): AppConfig {
+    if (config?.authConfig) {
+        if (!config.authConfig.redirectUri) {
+            config.authConfig.redirectUri = window.location.origin;
+        }
+    }
+    return config;
+}
+
 /**
  * The injection token to get the app config.
  */

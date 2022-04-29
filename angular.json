@@ -47,18 +47,24 @@
           },
           "configurations": {
             "secured": {
-              "fileReplacements": [
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
                 {
-                  "replace": "src/environments/app-config.json",
-                  "with": "src/environments/app-config.secured.json"
+                  "glob": "app-config.json",
+                  "input": "src/environments/secured",
+                  "output": "."
                 }
               ]
             },
             "production": {
-              "fileReplacements": [
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
                 {
-                  "replace": "src/environments/app-config.json",
-                  "with": "src/environments/app-config.prod.json"
+                  "glob": "app-config.json",
+                  "input": "src/environments/prod",
+                  "output": "."
                 }
               ],
               "optimization": true,
