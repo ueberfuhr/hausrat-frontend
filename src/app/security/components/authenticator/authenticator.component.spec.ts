@@ -4,7 +4,6 @@ import {AuthenticatorComponent} from './authenticator.component';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {HttpClientModule} from '@angular/common/http';
 import {AUTH_CONFIG} from '../../../../environments/app-config.model';
-import {environment} from '../../../../environments/environment';
 
 describe('AuthenticatorComponent', () => {
     let component: AuthenticatorComponent;
@@ -18,7 +17,7 @@ describe('AuthenticatorComponent', () => {
             ],
             declarations: [AuthenticatorComponent],
             providers: [
-                {provide: AUTH_CONFIG, useValue: environment.authConfig},
+                {provide: AUTH_CONFIG, useValue: 'localhost:8080'},
             ]
         })
             .compileComponents();

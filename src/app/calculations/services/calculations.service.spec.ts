@@ -1,6 +1,5 @@
 import {TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {environment} from '../../../environments/environment';
 import {CalculationsService} from './calculations.service';
 import {API_ENDPOINT} from '../../../environments/app-config.model';
 import {firstValueFrom} from 'rxjs';
@@ -13,7 +12,7 @@ describe('CalculationsService', () => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [
-                {provide: API_ENDPOINT, useValue: environment.apiEndpoint},
+                {provide: API_ENDPOINT, useValue: 'localhost:8080'},
             ]
         });
         httpMock = TestBed.inject(HttpTestingController);
@@ -30,7 +29,7 @@ describe('CalculationsService', () => {
             .then(response => expect(response).toHaveLength(0))
             .then(done);
         httpMock
-            .expectOne({method: 'GET', url: `${environment.apiEndpoint}/calculations`})
+            .expectOne({method: 'GET', url: `localhost:8080/calculations`})
             .flush([]);
     });
     it('should return todos in array', (done) => {
@@ -42,7 +41,7 @@ describe('CalculationsService', () => {
             })
             .then(done);
         httpMock
-            .expectOne({method: 'GET', url: `${environment.apiEndpoint}/calculations`})
+            .expectOne({method: 'GET', url: `localhost:8080/calculations`})
             .flush([{id: 5, value: 100, currency: 'EUR', request: {'living-area': 100, product: 'compact'}}]);
     });
 
